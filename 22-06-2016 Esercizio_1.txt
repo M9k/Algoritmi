@@ -12,14 +12,13 @@ PrintFairRic(nodo, sumsup)
 		sumsubtree = sumsubtree + PrintFairRic(nodo.right, sumsup+nodo.key)
 	
 	if(sumsup == sumsubtree)
-		print('il nodo ' << nodo << ' con chiave ' << nodo.key << '� fair\n')
+		print('il nodo ' << nodo << ' con chiave ' << nodo.key << 'è fair\n')
 
 	return sumsubtree
 
 /*
 Costo:
 
-
-
+La funzione, escludendo le due chiamate ricorsive, ha costo tetha(1), considerando n il numero di nodi dell'albero T e il fatto che la funzione viene eseguita una volta per ogni nodo, si ottiene che il costo complessivo è tetha(n*1) = tetha(n)
 
 */
