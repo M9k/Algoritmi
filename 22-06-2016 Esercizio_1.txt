@@ -1,0 +1,25 @@
+PrintFair(T)
+	PrintFairRic(x.root, 0)
+
+
+//ritorno: somma delle chiavi del sottoalbero "nodo"
+//parametri: "nodo" - il nodo, "sumsup" - la somma delle chiavi del percorso dalla radice al nodo  
+PrintFairRic(nodo, sumsup)
+	sumsubtree = nodo.key
+	if(nodo.left != nil)
+		sumsubtree = sumsubtree + PrintFairRic(nodo.left, sumsup+nodo.key)
+	if(nodo.right != nil)
+		sumsubtree = sumsubtree + PrintFairRic(nodo.right, sumsup+nodo.key)
+	
+	if(sumsup == sumsubtree)
+		print('il nodo ' << nodo << ' con chiave ' << nodo.key << 'è fair\n')
+
+	return sumsubtree
+
+/*
+Costo:
+
+
+
+
+*/
