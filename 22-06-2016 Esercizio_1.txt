@@ -21,4 +21,9 @@ Costo:
 
 La funzione, escludendo le due chiamate ricorsive, ha costo tetha(1), considerando n il numero di nodi dell'albero T e il fatto che la funzione viene eseguita una volta per ogni nodo, si ottiene che il costo complessivo è tetha(n*1) = tetha(n)
 
+Con il master theorem:
+T(n) = 2*T(n/2) + 1		f(x) = 1
+log2(2) = 1 ==> 		n^(logb(a)) = n^1 = n
+il costo asintotico stretto è quindi n
+
 */
