@@ -1,13 +1,17 @@
 #include <iostream>
 
+/// piccolo test che trova se in un array di interi è possibile sommare due numeri per avere una certa somma k
+/// si rifà all'idea del counting sort
+
 using std::cout;
 
-//complessit�: MAX{k, n}
-//complessit� lineare se n > k
+//complessità: MAX{k, n}
+//complessità lineare se n > k
 //svantaggioso per n di molto minore di k sommato al valore assoluto del numero negativo inferiore se presente
 
 bool sum(int A[10], int k)
 {
+	// shift per averli tutti positivi
 	int min = 0;
 	int n = 10;
 	for(int i=0; i<n; i++)
@@ -20,6 +24,7 @@ bool sum(int A[10], int k)
 		k += -2*min;
 	}
 	
+	// inizio la ricerca
 	bool s[k+1];
 	for(int i=0; i<k+1; i++)
 		s[i] = false;
