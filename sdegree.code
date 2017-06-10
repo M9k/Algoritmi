@@ -1,0 +1,22 @@
+sdegree(T)
+	[somma, squil] = s(T.root)
+	return squil
+	
+
+s(x)
+	if(x=nil)
+		sommafoglie = 0
+		gradosquilibrio = -inf
+	else
+		[sommaL, squilL] = s(x.left)
+		[sommaR, squilR] = s(x.right)
+
+		sommafoglie = x.key + sommaL + sommaR
+		gradosquilibrio = abs(sommaL - sommaR)
+
+	return sommafoglie, max( gradosquilibrio, squilL, squilR )
+
+// complessità -> T(n) = 2T(n/2) + 1 -> O(n)
+
+
+
