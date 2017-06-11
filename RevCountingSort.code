@@ -1,0 +1,12 @@
+RevCountingSort(A[],B[],n,k)
+	S[0...k] = {0}					//O(k)
+	for i=0 to n
+		S[A[i]] = S[A[i]] + 1		//O(n)
+	for i=1 to k
+		S[i] = S[i] + S[i-1]		//O(k)
+	for i=0 to n								//inverto il ciclo per mantenerlo stabile				
+		B[n + 1 - S[A[i]]] = A[i]		//O(n) 	//inverto l'ordine di assegnazione per averlo decrescente
+		S[A[i]] = S[A[i]]-1
+
+	//alternativa - facevo il counting sort e poi invertivo l'array B in tempo O(n)
+
