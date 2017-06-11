@@ -1,0 +1,32 @@
+LIS(X[], n)
+
+	C[1...n]
+	S[1...n]
+	massimo_globale = -inf
+	inizio = -1;
+
+	S[n] = +inf
+	C[n] = 1
+
+	for i=n-1 downto 1
+		C[i] = 1
+		S[i] = +inf
+		for j=i+1 to n
+			if(X[j]>= X[i] && (C[i] < C[j]+1)
+					C[i] = C[j]+1
+					S[i] = j
+
+		if (massimo_globale < C[i])
+			massimo_globale = C[i]
+			inizio = i
+
+	return massimo_globale, inizio, S
+
+Stampa(S, inizio, X)
+	i = inizio
+	while S[i] != +inf
+		print(X[i])
+		i = S[i]
+
+// complessità O(n^2)
+
