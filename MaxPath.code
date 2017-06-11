@@ -12,4 +12,4 @@ MaxPathRic(x)
 		return MaxPathRic(x.left) + x.key
 	return MaxPathRic(x.left) + MaxPathRic(x.right) + x.key		//esistono entrambi
 
-			
+//complessità O(n)			
