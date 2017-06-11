@@ -1,0 +1,18 @@
+gap(A[], n)
+	return gapRec(A,0,n)
+
+gapRec(A[], p, r)
+	if(p<r)
+		q = (p+r)/2
+		if(A[q]-A[p] > r-p)
+			return gapRec(A, q, p)
+		else
+			return gapRec(A, p, r)
+	else
+		return p
+
+//complessita' T(n) = T(n/2) + 1
+//f(x) = 1, n^log2(1) = 0 -> stesso ordine 
+//quindi T(n) = log(n)
+
+//ricorda un po' la formula di bisezione 
