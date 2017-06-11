@@ -5,7 +5,7 @@ gapRec(A[], p, r)
 	if(p<r)
 		q = (p+r)/2
 		if(A[q]-A[p] > r-p)
-			return gapRec(A, q, p)
+			return gapRec(A, q, r)
 		else
 			return gapRec(A, p, r)
 	else

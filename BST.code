@@ -1,0 +1,15 @@
+BST(A[])
+	BSTR(A, 0, A.size)
+
+BSTR(A[], p, r)
+	if(p<r)
+		q = (p+r)/2
+		x = mknod(A[q])
+		x.right = BSTR(A, q+1, r)
+		x.left = BSTR(A, p, q-1)
+		return x
+	else
+		return nil
+
+//complessità O(n)
+
