@@ -10,6 +10,8 @@ MaxPathRic(x)
 		return MaxPathRic(x.right) + x.key	
 	if(x.right == nill)											//left esiste
 		return MaxPathRic(x.left) + x.key
-	return MaxPathRic(x.left) + MaxPathRic(x.right) + x.key		//esistono entrambi
+	l = MaxPathRic(x.left)											//esistono entrambi
+	r = MaxPathRic(x.right)
+	return max(l, r) + x.key
 
 //complessità O(n)			
