@@ -1,0 +1,19 @@
+isABR(A)
+	n = A.size
+	[min, max, abr] = ABRR(A, 1, n)
+	return abr
+
+ABRR(A, i, n)
+	if i < n/2							//nodo interno
+		[minl, maxl, booll] = ABRR(A, i*2, n)
+		[minr, maxr, boolr] = ABRR(A, i*2+1, n)
+		if maxl <= A[i] and A[i] < minr && booll && boolr
+			abr = true
+		else
+			abr = false
+		return minl, maxr, abr
+	else
+		if(i<=n)						//foglia
+			return A[i], A[i], true
+		else 							//possibile se l'ultimo nodo interno ha solo un figlio
+			return +inf, -inf, true
