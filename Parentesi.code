@@ -1,0 +1,53 @@
+C[i,j] =	+inf												se i>j
+		 	X[i]												se i=j
+			min i<=k<j { C[i,k] * C[k+1,j] se O[k] = '*'		se j>i
+					     C[i,k] + C[k+1,j] se O[k] = '+' }
+
+			j --->
+C =>	x1		...
+		+inf	x2		...
+	i	+inf	+inf	x3		...
+	|	+inf	+inf	+inf	x4		...	
+	|	+inf	+inf	+inf	+inf	x5 		...
+	V	...		...		...		...		...		...
+
+ParBottomUp(O[], X[], n)
+	C[n,n] 			//non metto nemmeno i più infinito, non mi servono
+	S[n,n]			//indica dove devo chiundere la parentesi che inizia comprendendo l'elemento i,j
+	for r=1 to n
+		i = 1
+		j = r
+		while(j<=n)
+			if(i = j)
+				C[i,j] = X[i]
+				S[i,j] = i		// (x1) ad esempio
+			else				// devo trovare il minimo
+				min = +inf
+				for k=i to j-1
+					if O[k] = '*' and C[i,k] * C[k+1,j] < min
+						min = C[i,k] * C[k+1,j]
+						S[i,j] = k
+					if O[k] = '+' and C[i,k] + C[k+1,j] < min
+						min = C[i,k] + C[k+1,j]
+						S[i,j] = k
+					C[i,j] = min
+			i = i+1
+			j = j+1
+	return C[1,n], S
+
+//complessità: O(n^3), per ogni elemento di n^2 (in realtà (n^2)/2) eseguo un ciclo di massimo n iterazioni
+
+PrintRic(O[],X[],S[],n,p,r)
+	if(p == r)					//e quindi S[p] = '-', caso base, una sola variabile da stampare
+		print(X[p])
+	else
+		print('(')							// (
+		PrintRic(O,X,S,n,p,S[p,r])			// ...
+		print(')')							// )
+		print(O[S[p,r]])					// * o +
+		print('(')							// (
+		PrintRic(O,X,S,n,S[p,r]+1,r)		// ...
+		print(')')							// )
+
+//complessità della stampa: T(n) = 2T(n/2) + 1 ==> O(n)
+
