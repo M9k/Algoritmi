@@ -1,0 +1,67 @@
+
+//ho analizzato il problema da una prospettiva diversa da come richiesto, forse più intricata
+da valutare, ma ugualmente corretta, seguendo il suggerimento implicito dato dalla traccia
+dovrebbe uscire una matrice C più semplice da costruire.
+
+//costo usando le banconote j...n per pagare una somma s
+C[s',j] = {	0 											se s' = 0
+			+inf 										se j=n e s'-v[j] != 0
+			1											altriementi se s'-v[j] == 0
+			min {C[s'-v[j], j+1] + 1, C[s', j+1]} 		altriemnti se s'-v[j>=0
+			C[s', j+1]									altrimenti
+			}
+
+C	
+		j			j--->
+				1	2	...	...	n
+			------------------------
+	s'	0	|	0	0	0	0	0
+		1	|					
+	i	...	|					
+	|	...	|
+	|	...	|
+	V	s	|	X	X	X	X	X
+					Soluzione = minimo{X}	
+	
+
+//v valore delle banconote, n il numero di banconote, s la somma da totalizzare
+
+RestoBanconote(v[], n, s)
+	C = [s+1, n]				// C[0...s, 1...n]
+	mintots = +inf
+	posmin = -1
+	for j = n downto 1
+		for i = 0 to s
+			if i=0
+				C[i,j] = 0
+			else
+				if j == n
+					if i-v[j] != 0
+						C[i,j] = +inf
+
+				if i-v[j] == 0
+						C[i,j] = 1
+				else
+					C[i,j] = C[i, j+1]
+					if i-v[j]>=0 and C[i-v[j], j+1] +1 < C[i, j+1]
+						C[i,j] = C[i-v[j], j+1] +1
+			//cerco il minimo
+			if i == s and mintots < C[i,j]
+				mintots = C[i,j]
+				posmin = j
+	return mintots, j, C
+
+Stampa(j, C[], v[], s)
+	if j == -1
+		print(non è stata trovata una soluzione)
+	else
+		resto = s
+		while resto != 0
+			if C[resto,j] != C[resto,j-1]	//ho preso la moneta
+				print(v[j])
+				resto = resto -v [j]
+				j = j-1
+			else							//non ho preso la moneta
+				j = j-1
+				
+
