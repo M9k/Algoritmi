@@ -1,0 +1,16 @@
+Prec(x)
+	if x.left != nil
+		//il predecessore è nel sottoalbero sinistro
+		p = x.left
+		while p != nil
+			x = p
+			p = p.right
+		return x
+	else
+		//il predecessore può essere un parent
+		p = x.p
+		while p.right != x and p != nil
+			x = x.p
+			p = p.p
+		return p
+	
