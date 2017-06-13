@@ -1,3 +1,5 @@
+//esercizio del 2016-01-25
+
 PrintFair(T)
 	PrintFairRic(x.root, 0)
 
